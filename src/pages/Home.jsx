@@ -2,6 +2,7 @@ import React from "react";
 
 import "./Home.css";
 
+import { Link } from "react-router-dom";
 import Button from "../components/button/Button";
 import PikachuImg from "../images/pikachu.png";
 
@@ -13,8 +14,10 @@ const Home = () => {
         <div className="navbar">
           <h1 className="logo">Who's That</h1>
           <div className="button__holders">
-            <Button type="unfill" text="Github" />
-            <Button type="fill" text="Start" />
+            <Button type="unfill" text="Github" onClick={() => {}} />
+            <Link to="/play">
+              <Button type="fill" text="Start" />
+            </Link>
           </div>
         </div>
       </div>
