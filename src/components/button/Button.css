@@ -1,0 +1,23 @@
+.button {
+    max-width: 400px;
+    min-width: 200px;
+    padding: 0.5rem;
+    background: linear-gradient(88.88deg, #FFD600 0.96%, #FFD600 93.96%);
+    box-shadow: 0px 0px 6px 3px rgba(255, 214, 0, 0.2);
+    border-radius: 70px;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: black;
+    transition: all 0.3s none;
+}
+
+.button.unfill {
+    background: transparent;
+    color: #FFD600;
+    border: 2px solid #FFD600;
+}
+
+.button:hover {
+    box-shadow: 0px 0px 6px 3px rgba(255, 214, 0.5, 0.5);
+}

@@ -1,0 +1,112 @@
+/* Navbar start here */
+
+.navbar {
+    min-height: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
+.logo {
+    color: #FFD600;
+    font-size: 1.8rem;
+    margin-left: 2rem;
+}
+
+.button__holders {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.blurred_shadow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 50px;
+    background: rgb(255, 214, 0);
+    background: radial-gradient(circle, rgba(255, 214, 0, 1) 0%, rgba(255, 214, 0, 0.4209033955379027) 81%);
+    filter: blur(100px);
+}
+
+/* Navbar End Here */
+
+/* Home Start Here */
+.home__container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.home__container-left__side {
+    display: flex;
+    flex-direction: column;
+}
+
+.left__side-heading {
+    font-size: 7rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    margin-left: 2rem;
+}
+
+.left__side-heading span {
+    color: #FFD600;
+    text-shadow: 2px 2px 15px rgba(255, 214, 0, 0.3);
+}
+
+.play__btn {
+    max-width: 300px;
+    padding: 0.8rem;
+    background: linear-gradient(88.88deg, #FFD600 0.96%, #FFD600 93.96%);
+    box-shadow: 0px 0px 6px 3px rgba(255, 214, 0, 0.2);
+    border-radius: 70px;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: black;
+    transition: all 0.3s none;
+    margin-left: 2rem;
+    margin-top: 2rem;
+}
+
+.left__side-play__now-outline {
+    font-size: 6rem;
+    margin-left: 2rem;
+    margin-top: 1.9rem;
+    text-transform: uppercase;
+    color: white;
+    opacity: 0.02;
+}
+
+
+.home__container-right__side {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.right__side_img {
+    width: 40rem;
+    height: 40rem;
+    z-index: 10;
+}
+
+.right__side_blurred-shadow {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 35rem;
+    height: 35rem;
+    background: rgb(255, 214, 0);
+    background: radial-gradient(circle, rgba(255, 214, 0, 1) 0%, rgba(255, 214, 0, 0.4209033955379027) 81%);
+    filter: blur(100px);
+}
