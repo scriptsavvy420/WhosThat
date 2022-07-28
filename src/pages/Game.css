@@ -28,15 +28,16 @@
 }
 
 .whos__that_pokemon_card .wtp__logo {
-    width: 13rem;
+    width: 12rem;
     height: auto;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .whos__that_pokemon_card .pokemon__img {
     width: 20rem;
     height: 20rem;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+    filter: brightness(0);
 }
 
 /* whos_pokemon_details */
