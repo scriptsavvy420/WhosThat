@@ -1,0 +1,117 @@
+.high__score {
+    color: #FFD600;
+    margin-right: 2rem;
+    text-shadow: 2px 2px 15px rgba(255, 214, 0, 0.3);
+}
+
+
+.game__container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.whos__that_pokemon_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 25rem;
+    height: 35rem;
+    margin-left: 2rem;
+    margin-top: 2rem;
+    background: #FFFFFF;
+    box-shadow: 0px 3.35725px 16.7862px 4.19656px rgba(255, 214, 0, 0.39);
+    border-radius: 10.0717px;
+}
+
+.whos__that_pokemon_card .wtp__logo {
+    width: 13rem;
+    height: auto;
+    margin-top: 2rem;
+}
+
+.whos__that_pokemon_card .pokemon__img {
+    width: 20rem;
+    height: 20rem;
+    margin-bottom: 4rem;
+}
+
+/* whos_pokemon_details */
+
+.whos_pokemon_details {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 35rem;
+    margin-top: 2rem;
+}
+
+.score__time_container {
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.4rem;
+    margin-left: 2rem;
+}
+
+.yellow__box {
+    background: #FFD600;
+    box-shadow: 0px 0px 8px 2px rgba(255, 202, 13, 0.25);
+    border-radius: 6px;
+    color: black;
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
+}
+
+.option__container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: 2rem;
+    margin-top: 5rem;
+
+}
+
+.box__unfill {
+    width: 60%;
+    margin: 0.5rem;
+    border: 2px solid #FFD600;
+    box-shadow: 0px 0px 5px 2px rgba(255, 214, 0, 0.29);
+    border-radius: 8px;
+    color: #FFD600;
+    padding: 0.8rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* right bottom corner shadow and img */
+
+.game__right-shadow {
+    display: flex;
+    flex-direction: column;
+}
+
+.sm__right_img {
+    position: absolute;
+    right: 0;
+    width: 18rem;
+    height: 18rem;
+    z-index: 10;
+}
+
+.sm_right__side_blurred-shadow {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 10rem;
+    height: 12rem;
+    background: rgb(255, 214, 0);
+    background: radial-gradient(circle, rgba(255, 214, 0, 1) 0%, rgba(255, 214, 0, 0.4209033955379027) 81%);
+    filter: blur(100px);
+}

@@ -14,7 +14,7 @@ const Home = () => {
         <div className="navbar">
           <h1 className="logo">Who's That</h1>
           <div className="button__holders">
-            <Button type="unfill" text="Github" onClick={() => {}} />
+            <Button type="unfill" text="Github" />
             <Link to="/play">
               <Button type="fill" text="Start" />
             </Link>
@@ -27,7 +27,11 @@ const Home = () => {
           <h1 className="left__side-heading">
             Who's that <span>Pokémon</span>
           </h1>
-          <button className="play__btn">Play</button>
+
+          <Link to="/play">
+            <button className="play__btn">Play</button>
+          </Link>
+
           <h1 className="left__side-play__now-outline">Play Now</h1>
         </div>
 

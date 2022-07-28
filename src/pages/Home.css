@@ -64,14 +64,15 @@
 }
 
 .play__btn {
-    max-width: 300px;
+    width: 280px;
     padding: 0.8rem;
     background: linear-gradient(88.88deg, #FFD600 0.96%, #FFD600 93.96%);
     box-shadow: 0px 0px 6px 3px rgba(255, 214, 0, 0.2);
     border-radius: 70px;
     border: none;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     cursor: pointer;
+    font-weight: bold;
     color: black;
     transition: all 0.3s none;
     margin-left: 2rem;
