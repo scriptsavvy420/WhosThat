@@ -38,6 +38,11 @@
     height: 20rem;
     margin-bottom: 3rem;
     filter: brightness(0);
+    transition: all 0.7s ease-in-out;
+}
+
+.whos__that_pokemon_card .pokemon__img.show {
+    filter: brightness(100%);
 }
 
 /* whos_pokemon_details */
@@ -76,10 +81,9 @@
     flex-wrap: wrap;
     margin-left: 2rem;
     margin-top: 5rem;
-
 }
 
-.box__unfill {
+.option_box__unfill {
     width: 60%;
     margin: 0.5rem;
     border: 2px solid #FFD600;
@@ -89,6 +93,14 @@
     padding: 0.8rem 1rem;
     font-size: 1.5rem;
     cursor: pointer;
+}
+
+.option_box__unfill.correct_opt {
+    background: green;
+}
+
+.option_box__unfill.wrong_opt {
+    background-color: red;
 }
 
 /* right bottom corner shadow and img */

@@ -5,10 +5,15 @@ import PikachuTestImg from "../images/pikachu.png";
 
 const Game = () => {
   const totalPokemons = 905;
+  const correctAnswerPoint = 20;
 
   const [loadNewPokemon, setLoadNewPokemon] = useState(false);
   const [currentPokemon, setCurrentPokemon] = useState({});
+
+  const [score, setScore] = useState(0);
+
   const [answerOptions, setAnswerOptions] = useState([]);
+  const [isAllOptionLocked, setIsAllOptionLocked] = useState(false);
 
   const getRandomPokemonId = () => {
     return Math.floor(Math.random() * (totalPokemons + 1));
@@ -19,7 +24,6 @@ const Game = () => {
     fetch(randomPokemonFetchUrl)
       .then((response) => response.json())
       .then((pokemonData) => {
-        console.log(pokemonData);
         fetch(
           `https://pokeapi.co/api/v2/pokemon?limit=10&offset=${getRandomPokemonId()}`
         )
@@ -34,6 +38,57 @@ const Game = () => {
           });
       });
   }, [loadNewPokemon]);
+
+  const isSelectedOptCorrect = (selectedOpt, currentOpt) => {
+    return selectedOpt.toLowerCase() === currentOpt.toLowerCase();
+  };
+
+  const showPokemon = (show = true) => {
+    const wtpImg = document.querySelector(".wtp__logo");
+    const imgPokemon = document.querySelector("#pokemon_shadow_img");
+    if (show) {
+      imgPokemon.classList.add("show");
+      wtpImg.classList.add("hide");
+    } else {
+      imgPokemon.classList.remove("show");
+      wtpImg.classList.remove("hide");
+    }
+  };
+
+  const resetOptionsAndLoadNewQuestion = () => {
+    setIsAllOptionLocked(false);
+    setTimeout(() => {
+      showPokemon(false);
+      setLoadNewPokemon((prev) => !prev);
+    }, 3000);
+  };
+
+  const showCorrectAnswer = () => {
+    const options = document.getElementsByClassName("option_box__unfill");
+    console.log(options);
+    for (let index in options) {
+      if (
+        isSelectedOptCorrect(options[index].textContent, currentPokemon?.name)
+      ) {
+        options[index].classList?.add("correct_opt");
+        break;
+      }
+    }
+  };
+
+  const handleOptionClick = (e) => {
+    if (isAllOptionLocked) return;
+    setIsAllOptionLocked(true);
+    showPokemon();
+    if (isSelectedOptCorrect(e.target.textContent, currentPokemon?.name)) {
+      setScore((prevScore) => (prevScore += correctAnswerPoint));
+      e?.target.classList?.add("correct_opt");
+      resetOptionsAndLoadNewQuestion();
+    } else {
+      e?.target.classList?.add("wrong_opt");
+      showCorrectAnswer();
+    }
+  };
 
   return (
     <>
@@ -58,12 +113,13 @@ const Game = () => {
             onDragStart={(e) => {
               e.preventDefault();
             }}
+            id="pokemon_shadow_img"
             className="pokemon__img"
           />
         </div>
         <div className="whos_pokemon_details">
           <div className="score__time_container">
-            <div className="yellow__box">Score - 20</div>
+            <div className="yellow__box">Score - {score}</div>
             <div className="yellow__box">Time - 30</div>
             <div className="yellow__box">Home</div>
             <div className="yellow__box">Restart</div>
@@ -71,7 +127,11 @@ const Game = () => {
 
           <div className="option__container">
             {answerOptions?.map((pokemon, index) => (
-              <div className="box__unfill" key={index + pokemon.name}>
+              <div
+                className="option_box__unfill"
+                key={index + pokemon.name}
+                onClick={handleOptionClick}
+              >
                 {pokemon?.name}
               </div>
             ))}
