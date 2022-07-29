@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Game.css";
 import WTPLogoImg from "../images/whosthatpokemon.png";
 import PikachuTestImg from "../images/pikachu.png";
+import Timer from "../components/timer/Timer";
 import { fetchPokemonData, fetchPokemonOption } from "../utils/fetchdata";
 
 const Game = () => {
@@ -10,7 +11,6 @@ const Game = () => {
 
   const [loadNewPokemon, setLoadNewPokemon] = useState(false);
   const [currentPokemon, setCurrentPokemon] = useState({});
-  const [timer, setTimer] = useState(10);
 
   const [score, setScore] = useState(0);
 
@@ -72,8 +72,6 @@ const Game = () => {
     }
   };
 
-  const handleTimer = () => {};
-
   useEffect(() => {
     fetchPokemonData(getRandomPokemonId()).then((pokemonData) => {
       if (pokemonData.sprites.other.home.front_default == null) {
@@ -122,7 +120,13 @@ const Game = () => {
         <div className="whos_pokemon_details">
           <div className="score__time_container">
             <div className="yellow__box">Score - {score}</div>
-            <div className="yellow__box">Time - {timer}</div>
+            <div className="yellow__box">
+              Time -{" "}
+              <Timer
+                setStop={isAllOptionLocked}
+                questionChanged={loadNewPokemon}
+              />
+            </div>
             <div className="yellow__box">Home</div>
             <div className="yellow__box">Restart</div>
           </div>
