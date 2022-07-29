@@ -9,6 +9,9 @@ const Game = () => {
   const totalPokemons = 905;
   const correctAnswerPoint = 20;
 
+  const highScoreStored = localStorage.getItem("high_score") || 0;
+  const [highScore, sethighScore] = useState(highScoreStored);
+
   const [loadNewPokemon, setLoadNewPokemon] = useState(false);
   const [currentPokemon, setCurrentPokemon] = useState({});
 
@@ -69,6 +72,10 @@ const Game = () => {
     } else {
       e?.target.classList?.add("wrong_opt");
       showCorrectAnswer();
+      if (score > highScore) {
+        sethighScore(score);
+        localStorage.setItem("high_score", score);
+      }
     }
   };
 
@@ -96,7 +103,7 @@ const Game = () => {
         <div className="blurred_shadow"></div>
         <div className="navbar">
           <h1 className="logo">Who's That</h1>
-          <h2 className="high__score">High Score - 0</h2>
+          <h2 className="high__score">High Score - {highScore}</h2>
         </div>
       </div>
 
