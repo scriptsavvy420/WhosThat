@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Game.css";
 import WTPLogoImg from "../images/whosthatpokemon.png";
 import PikachuTestImg from "../images/pikachu.png";
+import { fetchPokemonData, fetchPokemonOption } from "../utils/fetchdata";
 
 const Game = () => {
   const totalPokemons = 905;
@@ -9,6 +10,7 @@ const Game = () => {
 
   const [loadNewPokemon, setLoadNewPokemon] = useState(false);
   const [currentPokemon, setCurrentPokemon] = useState({});
+  const [timer, setTimer] = useState(10);
 
   const [score, setScore] = useState(0);
 
@@ -18,31 +20,6 @@ const Game = () => {
   const getRandomPokemonId = () => {
     return Math.floor(Math.random() * (totalPokemons + 1));
   };
-
-  useEffect(() => {
-    const randomPokemonFetchUrl = `https://pokeapi.co/api/v2/pokemon/${getRandomPokemonId()}`;
-    fetch(randomPokemonFetchUrl)
-      .then((response) => response.json())
-      .then((pokemonData) => {
-        if (pokemonData.sprites.other.home.front_default == null) {
-          setLoadNewPokemon((prev) => !prev);
-          return;
-        }
-
-        fetch(
-          `https://pokeapi.co/api/v2/pokemon?limit=10&offset=${getRandomPokemonId()}`
-        )
-          .then((resp) => resp.json())
-          .then((data) => {
-            const options = getOptionsAndSuffle(
-              data?.results,
-              pokemonData?.name
-            );
-            setAnswerOptions(options);
-            setCurrentPokemon(pokemonData);
-          });
-      });
-  }, [loadNewPokemon]);
 
   const isSelectedOptCorrect = (selectedOpt, currentOpt) => {
     return selectedOpt.toLowerCase() === currentOpt.toLowerCase();
@@ -95,6 +72,26 @@ const Game = () => {
     }
   };
 
+  const handleTimer = () => {};
+
+  useEffect(() => {
+    fetchPokemonData(getRandomPokemonId()).then((pokemonData) => {
+      if (pokemonData.sprites.other.home.front_default == null) {
+        setLoadNewPokemon((prev) => !prev);
+        return;
+      }
+
+      fetchPokemonOption(getRandomPokemonId()).then((pokemonOptions) => {
+        const options = getOptionsAndSuffle(
+          pokemonOptions?.results,
+          pokemonData?.name
+        );
+        setAnswerOptions(options);
+        setCurrentPokemon(pokemonData);
+      });
+    });
+  }, [loadNewPokemon]);
+
   return (
     <>
       <div className="navbar__high-score">
@@ -125,7 +122,7 @@ const Game = () => {
         <div className="whos_pokemon_details">
           <div className="score__time_container">
             <div className="yellow__box">Score - {score}</div>
-            <div className="yellow__box">Time - 30</div>
+            <div className="yellow__box">Time - {timer}</div>
             <div className="yellow__box">Home</div>
             <div className="yellow__box">Restart</div>
           </div>
