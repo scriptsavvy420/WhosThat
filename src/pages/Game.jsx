@@ -24,6 +24,11 @@ const Game = () => {
     fetch(randomPokemonFetchUrl)
       .then((response) => response.json())
       .then((pokemonData) => {
+        if (pokemonData.sprites.other.home.front_default == null) {
+          setLoadNewPokemon((prev) => !prev);
+          return;
+        }
+
         fetch(
           `https://pokeapi.co/api/v2/pokemon?limit=10&offset=${getRandomPokemonId()}`
         )
