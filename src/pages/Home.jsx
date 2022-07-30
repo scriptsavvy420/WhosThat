@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Home.css";
 
 import { Link } from "react-router-dom";
 import Button from "../components/button/Button";
 import PikachuImg from "../images/pikachu.png";
+import { fetchPokemonData } from "../utils/fetchdata";
 
 const Home = () => {
+  const [randomPokemonImg, setrandomPokemonImg] = useState("");
+  useEffect(() => {
+    fetchPokemonData(Math.floor(Math.random() * (905 + 1))).then(
+      (pokemonData) => {
+        setrandomPokemonImg(pokemonData?.sprites?.other?.home?.front_default);
+      }
+    );
+  }, []);
   return (
     <>
       <div className="navbar__container">
@@ -36,7 +45,11 @@ const Home = () => {
         </div>
 
         <div className="home__container-right__side">
-          <img src={PikachuImg} alt="Pikachu" className="right__side_img" />
+          <img
+            src={randomPokemonImg || PikachuImg}
+            alt="pokemon"
+            className="right__side_img"
+          />
           <div className="right__side_blurred-shadow"></div>
         </div>
       </div>
