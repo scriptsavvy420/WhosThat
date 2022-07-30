@@ -88,6 +88,13 @@ const Game = () => {
     });
   }, [loadNewPokemon]);
 
+  const restartGame = () => {
+    setGameOver(false);
+    setScore(0);
+    setIsAllOptionLocked(false);
+    setLoadNewPokemon(true);
+  };
+
   return (
     <>
       <div className="navbar__high-score">
@@ -103,6 +110,7 @@ const Game = () => {
           highScore={highScore}
           score={score}
           pokemonName={currentPokemon?.name}
+          restartGame={restartGame}
         />
       ) : (
         <div className="game__container">
