@@ -117,3 +117,42 @@
         opacity: 1;
     }
 }
+
+@media screen and (max-width:700px) {
+    .game__over_container {
+        margin-top: 8rem;
+    }
+}
+
+@media screen and (max-width:530px) {
+    .game__over_dialog {
+        width: 100%;
+        height: 60%;
+    }
+
+    .game__over_details {
+        width: 90%;
+        height: 15rem;
+    }
+
+    .game__over_replay,
+    .game_over_home {
+        width: 3rem;
+        height: 3rem;
+        margin-top: 2rem;
+    }
+
+    .game__over_replay img,
+    .game_over_home img {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+
+    .game__over_replay {
+        margin-left: 5rem;
+    }
+
+    .game_over_home {
+        margin-right: 5rem;
+    }
+}
