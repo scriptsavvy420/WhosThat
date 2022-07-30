@@ -5,6 +5,7 @@ import PikachuTestImg from "../images/pikachu.png";
 import Timer from "../components/timer/Timer";
 import { fetchPokemonData, fetchPokemonOption } from "../utils/fetchdata";
 import GameOver from "../components/gameover/GameOver";
+import { useNavigate } from "react-router-dom";
 
 const Game = () => {
   const totalPokemons = 905;
@@ -22,6 +23,11 @@ const Game = () => {
   const [answerOptions, setAnswerOptions] = useState([]);
   const [isAllOptionLocked, setIsAllOptionLocked] = useState(false);
 
+  const navigate = useNavigate();
+  const goToHome = () => {
+    navigate("/");
+  };
+
   const getRandomPokemonId = () => {
     return Math.floor(Math.random() * (totalPokemons + 1));
   };
@@ -31,50 +37,32 @@ const Game = () => {
   };
 
   const showPokemon = (show = true) => {
-    const wtpImg = document.querySelector(".wtp__logo");
     const imgPokemon = document.querySelector("#pokemon_shadow_img");
     if (show) {
       imgPokemon.classList.add("show");
-      wtpImg.classList.add("hide");
     } else {
-      imgPokemon.classList.remove("show");
-      wtpImg.classList.remove("hide");
+      if (imgPokemon) imgPokemon.classList.remove("show");
     }
   };
 
   const resetOptionsAndLoadNewQuestion = () => {
-    setIsAllOptionLocked(false);
     setTimeout(() => {
       showPokemon(false);
+      setIsAllOptionLocked(false);
       setLoadNewPokemon((prev) => !prev);
     }, 3000);
   };
 
-  const showCorrectAnswer = () => {
-    const options = document.getElementsByClassName("option_box__unfill");
-    console.log(options);
-    for (let index in options) {
-      if (
-        isSelectedOptCorrect(options[index].textContent, currentPokemon?.name)
-      ) {
-        options[index].classList?.add("correct_opt");
-        break;
-      }
-    }
-  };
-
   const handleOptionClick = (e) => {
     if (isAllOptionLocked) return;
-    setIsAllOptionLocked(true);
-    showPokemon();
     if (isSelectedOptCorrect(e.target.textContent, currentPokemon?.name)) {
+      showPokemon();
       setScore((prevScore) => (prevScore += correctAnswerPoint));
       e?.target.classList?.add("correct_opt");
+      setIsAllOptionLocked(true);
       resetOptionsAndLoadNewQuestion();
     } else {
       setGameOver(true);
-      e?.target.classList?.add("wrong_opt");
-      showCorrectAnswer();
       if (score > highScore) {
         sethighScore(score);
         localStorage.setItem("high_score", score);
@@ -141,12 +129,18 @@ const Game = () => {
               <div className="yellow__box">
                 Time -{" "}
                 <Timer
-                  setStop={isAllOptionLocked}
+                  isAllOptionLocked={isAllOptionLocked}
                   questionChanged={loadNewPokemon}
+                  setGameOver={setGameOver}
                 />
               </div>
-              <div className="yellow__box">Home</div>
-              <div className="yellow__box">Restart</div>
+              <div
+                className="yellow__box"
+                style={{ cursor: "pointer" }}
+                onClick={goToHome}
+              >
+                Home
+              </div>
             </div>
 
             <div className="option__container">
