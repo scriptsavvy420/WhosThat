@@ -46,7 +46,7 @@ const Home = () => {
 
         <div className="home__container-right__side">
           <img
-            src={randomPokemonImg || PikachuImg}
+            src={randomPokemonImg ? randomPokemonImg : PikachuImg}
             alt="pokemon"
             className="right__side_img"
           />

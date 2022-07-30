@@ -1,8 +1,13 @@
 import "./GameOver.css";
 import HomeIcon from "../../images/ic_home.svg";
 import ReplayIcon from "../../images/ic_replay.svg";
+import { useNavigate } from "react-router-dom";
 
 const GameOver = ({ pokemonImg, highScore, score, pokemonName }) => {
+  const navigate = useNavigate();
+  const goToHome = () => {
+    navigate("/");
+  };
   return (
     <div className="game__over_container">
       <div className="game__over_dialog">
@@ -19,7 +24,7 @@ const GameOver = ({ pokemonImg, highScore, score, pokemonName }) => {
         <div className="game__over_replay">
           <img src={ReplayIcon} alt="Replay Game" />
         </div>
-        <div className="game_over_home">
+        <div className="game_over_home" onClick={goToHome}>
           <img src={HomeIcon} alt="Go to Home" />
         </div>
       </div>

@@ -126,7 +126,8 @@ const Game = () => {
             />
             <img
               src={currentPokemon?.sprites?.other?.home?.front_default}
-              alt="Pokemon Shadow!"
+              loading="lazy"
+              alt={currentPokemon.name}
               onDragStart={(e) => {
                 e.preventDefault();
               }}
