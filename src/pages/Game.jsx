@@ -4,6 +4,7 @@ import WTPLogoImg from "../images/whosthatpokemon.png";
 import PikachuTestImg from "../images/pikachu.png";
 import Timer from "../components/timer/Timer";
 import { fetchPokemonData, fetchPokemonOption } from "../utils/fetchdata";
+import GameOver from "../components/gameover/GameOver";
 
 const Game = () => {
   const totalPokemons = 905;
@@ -15,6 +16,7 @@ const Game = () => {
   const [loadNewPokemon, setLoadNewPokemon] = useState(false);
   const [currentPokemon, setCurrentPokemon] = useState({});
 
+  const [IsGameOver, setGameOver] = useState(false);
   const [score, setScore] = useState(0);
 
   const [answerOptions, setAnswerOptions] = useState([]);
@@ -70,6 +72,7 @@ const Game = () => {
       e?.target.classList?.add("correct_opt");
       resetOptionsAndLoadNewQuestion();
     } else {
+      setGameOver(true);
       e?.target.classList?.add("wrong_opt");
       showCorrectAnswer();
       if (score > highScore) {
@@ -106,56 +109,68 @@ const Game = () => {
           <h2 className="high__score">High Score - {highScore}</h2>
         </div>
       </div>
-
-      <div className="game__container">
-        <div className="whos__that_pokemon_card">
-          <img
-            src={WTPLogoImg}
-            alt="Who's that pokemon!"
-            className="wtp__logo"
-          />
-          <img
-            src={currentPokemon?.sprites?.other?.home?.front_default}
-            alt="Pokemon Shadow!"
-            onDragStart={(e) => {
-              e.preventDefault();
-            }}
-            id="pokemon_shadow_img"
-            className="pokemon__img"
-          />
-        </div>
-        <div className="whos_pokemon_details">
-          <div className="score__time_container">
-            <div className="yellow__box">Score - {score}</div>
-            <div className="yellow__box">
-              Time -{" "}
-              <Timer
-                setStop={isAllOptionLocked}
-                questionChanged={loadNewPokemon}
-              />
-            </div>
-            <div className="yellow__box">Home</div>
-            <div className="yellow__box">Restart</div>
+      {IsGameOver ? (
+        <GameOver
+          pokemonImg={currentPokemon?.sprites?.other?.home?.front_default}
+          highScore={highScore}
+          score={score}
+          pokemonName={currentPokemon?.name}
+        />
+      ) : (
+        <div className="game__container">
+          <div className="whos__that_pokemon_card">
+            <img
+              src={WTPLogoImg}
+              alt="Who's that pokemon!"
+              className="wtp__logo"
+            />
+            <img
+              src={currentPokemon?.sprites?.other?.home?.front_default}
+              alt="Pokemon Shadow!"
+              onDragStart={(e) => {
+                e.preventDefault();
+              }}
+              id="pokemon_shadow_img"
+              className="pokemon__img"
+            />
           </div>
-
-          <div className="option__container">
-            {answerOptions?.map((pokemon, index) => (
-              <div
-                className="option_box__unfill"
-                key={index + pokemon.name}
-                onClick={handleOptionClick}
-              >
-                {pokemon?.name}
+          <div className="whos_pokemon_details">
+            <div className="score__time_container">
+              <div className="yellow__box">Score - {score}</div>
+              <div className="yellow__box">
+                Time -{" "}
+                <Timer
+                  setStop={isAllOptionLocked}
+                  questionChanged={loadNewPokemon}
+                />
               </div>
-            ))}
-          </div>
+              <div className="yellow__box">Home</div>
+              <div className="yellow__box">Restart</div>
+            </div>
 
-          <div className="game__right-shadow">
-            <img src={PikachuTestImg} alt="Pikachu" className="sm__right_img" />
-            <div className="sm_right__side_blurred-shadow"></div>
+            <div className="option__container">
+              {answerOptions?.map((pokemon, index) => (
+                <div
+                  className="option_box__unfill"
+                  key={index + pokemon.name}
+                  onClick={handleOptionClick}
+                >
+                  {pokemon?.name}
+                </div>
+              ))}
+            </div>
+
+            <div className="game__right-shadow">
+              <img
+                src={PikachuTestImg}
+                alt="Pikachu"
+                className="sm__right_img"
+              />
+              <div className="sm_right__side_blurred-shadow"></div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

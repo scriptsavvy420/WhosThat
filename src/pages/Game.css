@@ -25,6 +25,8 @@
     background: #FFFFFF;
     box-shadow: 0px 3.35725px 16.7862px 4.19656px rgba(255, 214, 0, 0.39);
     border-radius: 10.0717px;
+    -webkit-animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s both;
+    animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0s both;
 }
 
 .whos__that_pokemon_card .wtp__logo {
@@ -128,4 +130,32 @@
     background: rgb(255, 214, 0);
     background: radial-gradient(circle, rgba(255, 214, 0, 1) 0%, rgba(255, 214, 0, 0.4209033955379027) 81%);
     filter: blur(100px);
+}
+
+@-webkit-keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes scale-in-center {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
 }
