@@ -5,15 +5,24 @@ import "./Home.css";
 import { Link } from "react-router-dom";
 import Button from "../components/button/Button";
 import PikachuImg from "../images/pikachu.png";
-import { fetchPokemonData } from "../utils/fetchdata";
 
 const Home = () => {
-  const [randomPokemonImg, setrandomPokemonImg] = useState("");
+  // you can add any pokemon to this random pokemon list
+  const randomPokemon = [
+    PikachuImg,
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/female/445.png",
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png",
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/727.png",
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/717.png",
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/791.png",
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/250.png",
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/150.png",
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/493.png",
+  ];
+  const [randomPokemonImg, setrandomPokemonImg] = useState(null);
   useEffect(() => {
-    fetchPokemonData(Math.floor(Math.random() * (905 + 1))).then(
-      (pokemonData) => {
-        setrandomPokemonImg(pokemonData?.sprites?.other?.home?.front_default);
-      }
+    setrandomPokemonImg(
+      randomPokemon[Math.floor(Math.random() * randomPokemon.length)]
     );
   }, []);
   return (
@@ -46,7 +55,7 @@ const Home = () => {
 
         <div className="home__container-right__side">
           <img
-            src={randomPokemonImg ? randomPokemonImg : PikachuImg}
+            src={randomPokemonImg}
             alt="pokemon"
             className="right__side_img"
           />
