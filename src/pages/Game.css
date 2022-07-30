@@ -1,3 +1,13 @@
+.navbar_game {
+    min-height: 3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
 .high__score {
     color: #FFD600;
     margin-right: 2rem;
@@ -157,5 +167,61 @@
         -webkit-transform: scale(1);
         transform: scale(1);
         opacity: 1;
+    }
+}
+
+/* Media Query */
+
+@media screen and (max-width:1124px) {
+    .game__container {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .whos_pokemon_details {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        margin-top: 3.5rem;
+    }
+
+    .option__container {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .game__right-shadow {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width:500px) {
+    .whos__that_pokemon_card {
+        width: 90%;
+        height: 35rem;
+    }
+
+    .score__time_container {
+        gap: 1.3rem;
+    }
+
+    .yellow__box {
+        font-size: 1rem;
+    }
+}
+
+@media screen and (max-width:430px) {
+    .navbar_game {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .high__score {
+        margin-right: 0;
+        text-align: center;
+        margin-top: 0.5rem;
     }
 }

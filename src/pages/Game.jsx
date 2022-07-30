@@ -99,7 +99,7 @@ const Game = () => {
     <>
       <div className="navbar__high-score">
         <div className="blurred_shadow"></div>
-        <div className="navbar">
+        <div className="navbar_game">
           <h1 className="logo">Who's That</h1>
           <h2 className="high__score">High Score - {highScore}</h2>
         </div>
