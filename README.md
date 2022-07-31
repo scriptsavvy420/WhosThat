@@ -1,8 +1,17 @@
 ![Banner](https://user-images.githubusercontent.com/82146140/182009172-8d3d3320-33cf-42e2-8a10-2e2df013c943.png)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/90060de6-ff31-4ce1-b016-7e8385fd0ee6/deploy-status)](https://whos-that.netlify.app/)
+
 # Who's That 
 
 Who's That is a simple react js game where you have choose which pokemon match from shadow!
+
+#### Tech Stacks
+
+Pokeapi <br>
+Javascript <br>
+Css <br>
+Html <br>
 
 
 ## Preview 
