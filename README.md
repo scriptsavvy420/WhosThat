@@ -1,3 +1,6 @@
+![Banner](https://user-images.githubusercontent.com/82146140/182009172-8d3d3320-33cf-42e2-8a10-2e2df013c943.png)
+
+
 ## How to run
 
 In the project directory, you can run:
