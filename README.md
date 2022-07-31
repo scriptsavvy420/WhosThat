@@ -13,7 +13,15 @@ Who's That is a simple react js game where you have choose which pokemon match f
 
 ![Screenshot 2022-07-31 105002](https://user-images.githubusercontent.com/82146140/182011691-1a8e1a4c-20dd-4f8e-9fb2-f89f0ca5f67d.png)
 
-## How to run
+## Get Started
+
+First clone this or forked repo -
+
+```
+git clone https://github.com/Vishal-beep136/WhosThat.git
+```
+
+
 
 In the project directory, you can run:
 
