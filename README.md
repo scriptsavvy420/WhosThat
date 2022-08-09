@@ -30,7 +30,17 @@ First clone this or forked repo -
 git clone https://github.com/Vishal-beep136/WhosThat.git
 ```
 
+Then install required dependencies or packages -
 
+```
+npm install
+```
+
+or
+
+```
+yarn install
+```
 
 In the project directory, you can run:
 
